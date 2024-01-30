@@ -1,0 +1,572 @@
+/* General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(1000deg, #3b6bb9, #5089ea);
+  }
+  
+  /* POP UP */
+  .popup.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .popup {
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    position: absolute;
+    background: #fff;
+    width: 100%;
+    max-width: 500px;
+    transition: all 0.5s ease;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.103);
+  }
+  .popup h2 {
+    font-size: calc(29 / 16 * 1rem);
+    background: -webkit-linear-gradient(#ebe9e9, #a3a3a3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .gold {
+    background: -webkit-linear-gradient(#fee382, #f3aa44);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .popup p {
+    font-size: calc(18 / 16 * 1rem);
+    text-align: justify;
+    padding: 15px 0 20px 0;
+    font-weight: 500;
+    color: #303030;
+  }
+  
+  .popup button {
+    font-weight: 500;
+    color: #fff;
+    padding: 8px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+    background-image: linear-gradient(1000deg, #8ab2f3, #5e99fd);
+  }
+  
+  .popup button:hover {
+    cursor: pointer;
+    transform: scale(0.97);
+  }
+  .author {margin-top: 30px;
+    border-top: 1px solid #ccc;
+    padding: 30px 20px 0 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  
+  .author a {
+    color: #5e99fd;
+    text-decoration: none;
+  }
+  /* card-wrapper */
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .wrapper.show {
+    opacity: 1;
+    pointer-events: all;
+    transition: all 0.5s ease;
+  }
+  
+  .wrapper .players-lives {
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    text-align: center;
+    margin: 50px 0 25px 0;
+  }
+  
+  .players-lives h1 {
+    background: -webkit-linear-gradient(#fee382, #e49c37);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .card-wrapper {
+    height: 650px;
+    width: 650px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+  }
+  
+  .cards,
+  .card,
+  .view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* Cards  */
+  .cards {
+    height: 100%;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .cards .card {
+    cursor: pointer;
+    position: relative;
+    perspective: 800px;
+    transform-style: preserve-3d;
+    width: calc(100% / 4 - 10px);
+    height: calc(100% / 4 - 10px);
+  }
+  
+  .card.shake {
+    animation: shake 0.5s ease-in-out;
+  }
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    20% {
+      transform: translateX(-5px);
+    }
+    40% {
+      transform: translateX(5px);
+    }
+    60% {
+      transform: translateX(-3px);
+    }
+    80% {
+      transform: translateX(3px);
+    }
+  }
+  
+  .cards .card .view {
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    pointer-events: none;
+    border-radius: 10px;
+    background: #fff;
+    position: absolute;
+    transition: transform 0.3s linear;
+    backface-visibility: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Front View */
+  .card .front-view span {
+    background: -webkit-linear-gradient(#fee382, #e49c37);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: calc(50 / 16 * 1rem);
+  }
+  .card.flip .front-view {
+    transform: rotateY(180deg);
+  }
+  
+  /* Back view */
+  .card .back-view {
+    transform: rotateY(-180deg);
+  }
+  
+  .card .back-view img {
+    max-width: 90px;
+  }
+  
+  .card.flip .back-view {
+    transform: rotateY(0);
+  }
+  
+  /* Retry */
+  .retry.show {
+    opacity: 1;
+    pointer-events: all;
+    transition: all 0.5s ease;
+  }
+  
+  .retry {
+    opacity: 0;
+    pointer-events: none;
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    position: absolute;
+    background: #fff;
+    width: 100%;
+    max-width: 500px;
+    transition: all 0.5s ease;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.103);
+  }
+  
+  .retry h2 {
+    color: #3b3b3b;
+    font-size: calc(25 / 16 * 1rem);
+    padding: 15px 0 30px 0;
+  }
+  
+  .retry img {
+    width: 100px;
+  }
+  
+  .retry button {
+    width: 100px;
+    letter-spacing: 0.6px;
+    font-weight: 500;
+    color: #fff;
+    padding: 8px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+    background-image: linear-gradient(85deg, #fee382, #e49c37);
+  }
+  
+  .retry button:hover {
+    cursor: pointer;
+  
+    transform: scale(0.97);
+  }
+  
+  /* Replay */
+  .replay.show {
+    opacity: 1;
+    pointer-events: all;
+    transition: all 0.5s ease;
+  }
+  
+  .replay {
+    opacity: 0;
+    pointer-events: none;
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    position: absolute;
+    background: #fff;
+  
+    width: 100%;
+    max-width: 500px;
+    transition: all 0.5s ease;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.103);
+  }
+  
+  .replay h2 {
+    color: #3b3b3b;
+    font-size: calc(25 / 16 * 1rem);
+    padding: 15px 0 30px 0;
+  }
+  
+  .replay img {
+    width: 150px;
+  }
+  
+  .replay button {
+    width: 100px;
+    letter-spacing: 0.6px;
+    font-weight: 500;
+    color: #fff;
+    padding: 8px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+    background-image: linear-gradient(85deg, #fee382, #e49c37);
+  }
+  
+  .replay button:hover {
+    cursor: pointer;
+  
+    transform: scale(0.97);
+  }
+  
+  /* Footer */
+  .footer {
+    margin-top: 50px;
+  }
+  .footer-link,
+  .footer-link:visited {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+  }
+  
+  .footer-link::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    position: absolute;
+    bottom: 10%;
+    z-index: -1;
+    transition: all 0.3s ease;
+    border-radius: 1px;
+  }
+  
+  .footer-link:hover {
+    color: #5089ea;
+    background-color: #fff;
+    transition: all 0.3s ease;
+  }
+  
+  .footer-link:hover::after {
+    height: 20px;
+  }
+  
+  /* MEDIA QUERY */
+  @media (max-width: 690px) {
+    /* card-wrapper */
+    .card-wrapper {
+      height: 600px;
+      width: 600px;
+    }
+    /* Back view */
+    .card .back-view img {
+      max-width: 85px;
+    }
+  }
+  
+  @media (max-width: 619px) {
+    /* card-wrapper */
+  
+    .card-wrapper {
+      height: 550px;
+      width: 550px;
+    }
+    /* Back view */
+  
+    .card .back-view img {
+      max-width: 75px;
+    }
+  }
+  
+  @media (max-width: 560px) {
+    /* card-wrapper */
+    .players-lives h1 {
+      font-size: calc(30 / 16 * 1rem);
+    }
+    .card-wrapper {
+      height: 500px;
+      width: 500px;
+    }
+    /* Front View */
+    .card .front-view span {
+      font-size: calc(45 / 16 * 1rem);
+    }
+    /* Back view */
+    .card .back-view img {
+      max-width: 70px;
+    }
+  
+    /* Replay and Retry */
+  
+    .replay,
+    .retry {
+      padding: 30px;
+      max-width: 450px;
+    }
+  
+    .replay h2,
+    .retry h2 {
+      font-size: calc(22 / 16 * 1rem);
+      padding: 15px 0 30px 0;
+    }
+  
+    .replay img {
+      width: 130px;
+    }
+    .retry img {
+      width: 80px;
+    }
+  }
+  
+  @media (max-width: 510px) {
+    /* POP UP */
+    .popup {
+      padding: 30px;
+      max-width: 430px;
+    }
+    .popup h2 {
+      font-size: calc(23 / 16 * 1rem);
+    }
+  
+    .popup p {
+      font-size: 1rem;
+    }
+  
+    .popup button {
+      width: 100px;
+      padding: 8px;
+      font-size: 0.9rem;
+    }
+    /* card-wrapper */
+  
+    .card-wrapper {
+      height: 450px;
+      width: 450px;
+    }
+    /* Front View */
+    .card .front-view span {
+      font-size: calc(40 / 16 * 1rem);
+    }
+    /* Back view */
+    .card .back-view img {
+      max-width: 60px;
+    }
+  
+    .author {
+      font-size: 1rem;
+    }
+  }
+  @media (max-width: 480px) {
+    /* Replay and Retry */
+  
+    .replay,
+    .retry {
+      padding: 30px;
+      max-width: 400px;
+    }
+  }
+  
+  @media (max-width: 455px) {
+    /* POP UP */
+    .popup {
+      padding: 30px;
+      max-width: 360px;
+    }
+  
+    /* card-wrapper */
+    .players-lives h1 {
+      font-size: calc(25 / 16 * 1rem);
+    }
+    .card-wrapper {
+      height: 410px;
+      width: 410px;
+    }
+    /* Back view */
+    .card .back-view img {
+      max-width: 50px;
+    }
+  
+    /* Footer */
+    .footer-link,
+    .footer-link:visited {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 420px) {
+    /* card-wrapper */
+  
+    .card-wrapper {
+      height: 380px;
+      width: 380px;
+    }
+    /* Front View */
+    .card .front-view span {
+      font-size: calc(35 / 16 * 1rem);
+    }
+    /* Back view */
+    .card .back-view img {
+      max-width: 45px;
+    }
+    /* Footer */
+    .footer-link,
+    .footer-link:visited {
+      font-size: 0.8rem;
+    }
+  
+    /* Replay and Retry */
+  
+    .replay,
+    .retry {
+      padding: 30px;
+      max-width: 350px;
+    }
+  
+    .replay h2,
+    .retry h2 {
+      color: #3b3b3b;
+      font-size: calc(20 / 16 * 1rem);
+      padding: 15px 0 30px 0;
+    }
+  
+    .replay img {
+      width: 130px;
+    }
+    .retry img {
+      width: 95px;
+    }
+  
+    .replay button,
+    .retry button {
+      width: 90px;
+      padding: 8px;
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 385px) {
+    /* POP UP */
+    .popup {
+      padding: 15px 15px;
+      max-width: 360px;
+    }
+    .popup h2 {
+      font-size: calc(22 / 16 * 1rem);
+    }
+  
+    .popup p {
+      font-size: 1rem;
+    }
+  
+    .popup button {
+      width: 90px;
+      padding: 8px;
+      font-size: 0.9rem;
+    }
+    /* card-wrapper */
+  
+    .card-wrapper {
+      height: 350px;
+      width: 350px;
+    }
+    /* Back view */
+    .card .back-view img {
+      max-width: 42px;
+    }
+  
+    /* Replay and Retry */
+  
+    .replay,
+    .retry {
+      padding: 30px 10px;
+      max-width: 330px;
+    }
+  }
